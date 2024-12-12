@@ -1,5 +1,5 @@
 function updateCountdown() {
-  chrome.storage.sync.get(["targetDate", "message"], function (data) {
+  chrome.storage.sync.get(["targetDate", "messages"], function (data) {
     if (data.targetDate) {
       const targetDate = new Date(data.targetDate);
       const currentDate = new Date();
@@ -13,7 +13,11 @@ function updateCountdown() {
       document.getElementById("days").textContent = days;
       document.getElementById("time-text").textContent = 
         `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
-      document.getElementById("message").textContent = data.message || "yo";
+      
+      // Display all messages
+      const messages = data.messages || ["Set your date and messages in popup"];
+      const messagesHtml = messages.map(msg => `<div class="message">${msg}</div>`).join('');
+      document.getElementById("messages-container").innerHTML = messagesHtml;
     }
   });
 }

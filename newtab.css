@@ -55,4 +55,20 @@ body {
 #hours-text, #minutes-text, #seconds-text {
   color: #DE4F10;
   text-shadow: 0 0 10px rgba(222, 79, 16, 0.3);
+}
+
+#messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.message {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: white;
+  letter-spacing: 1px;
+  padding: 0 20px;
 } 

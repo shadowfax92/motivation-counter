@@ -28,4 +28,45 @@ button {
 }
 button:hover {
   background-color: #636e72;
+}
+.message-input-group {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+.message-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 0;
+  width: auto;
+}
+.remove-message {
+  background: none;
+  border: none;
+  color: #636e72;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  margin-left: -24px;
+  align-self: center;
+  width: auto;
+}
+.remove-message:hover {
+  color: #ff4757;
+}
+.secondary-button {
+  width: 100%;
+  padding: 8px;
+  background-color: #636e72;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+.secondary-button:hover {
+  background-color: #7f8c8d;
 } 
