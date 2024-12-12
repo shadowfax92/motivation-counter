@@ -11,9 +11,8 @@ function updateCountdown() {
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
       document.getElementById("days").textContent = days;
-      document.getElementById("hours-text").textContent = `${hours} hours`;
-      document.getElementById("minutes-text").textContent = `${minutes} minutes`;
-      document.getElementById("seconds-text").textContent = `${seconds} seconds`;
+      document.getElementById("time-text").textContent = 
+        `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
       document.getElementById("message").textContent = data.message || "yo";
     }
   });
