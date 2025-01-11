@@ -22,8 +22,30 @@ function updateCountdown() {
   });
 }
 
+function updateCompanyStats() {
+  chrome.storage.sync.get(["companyStartDate"], function (data) {
+    if (data.companyStartDate) {
+      const startDate = new Date(data.companyStartDate);
+      const today = new Date();
+      
+      // Calculate days
+      const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      
+      // Calculate months (approximate)
+      const months = Math.floor(days / 30.44); // Average days per month
+
+      document.getElementById("company-days").textContent = days;
+      document.getElementById("company-months").textContent = months;
+    }
+  });
+}
+
 // Update countdown immediately and then every second
 document.addEventListener('DOMContentLoaded', function() {
   updateCountdown();
   setInterval(updateCountdown, 1000);
-}); 
+});
+
+// Call this function when page loads and set interval to update
+updateCompanyStats();
+setInterval(updateCompanyStats, 1000 * 60 * 60); // Update every hour 
