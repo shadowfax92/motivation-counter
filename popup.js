@@ -18,19 +18,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  function autoResizeTextarea(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  }
+
   function addMessageInput(value = '') {
     const messageGroup = document.createElement('div');
     messageGroup.className = 'message-input-group';
     messageGroup.innerHTML = `
-      <input type="text" class="message-input" placeholder="Enter your message" value="${value}" />
+      <textarea class="message-input" placeholder="Enter your message">${value}</textarea>
       <button class="remove-message" title="Remove message">&times;</button>
     `;
 
+    const textarea = messageGroup.querySelector('.message-input');
+    textarea.addEventListener('input', () => autoResizeTextarea(textarea));
+    
     messageGroup.querySelector('.remove-message').addEventListener('click', function() {
       messageGroup.remove();
     });
 
     messagesContainer.appendChild(messageGroup);
+    autoResizeTextarea(textarea); // Initial resize
   }
 
   addMessageButton.addEventListener("click", function() {
