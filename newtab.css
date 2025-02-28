@@ -19,16 +19,38 @@ body {
 }
 
 #days {
-  font-size: 120px;
+  font-size: 60px;
   font-weight: bold;
-  line-height: 1;
-  margin-bottom: 5px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.time-value {
+  font-size: 72px;
+  font-weight: bold;
+  color: white;
+  margin: 0 5px;
+}
+
+.time-label {
+  font-size: 36px;
+  color: #999;
+  margin-right: 20px;
 }
 
 #label {
   font-size: 24px;
   color: #999;
   margin-bottom: 30px;
+  display: none; /* Hide the label since we now have inline labels */
 }
 
 #message {
@@ -92,4 +114,9 @@ body {
 .company-stats .label {
   font-size: 18px;
   opacity: 0.8;
+}
+
+/* Hide the time-text since we now have a cleaner display */
+#time-text {
+  display: none;
 } 
