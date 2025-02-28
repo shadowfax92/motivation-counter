@@ -36,14 +36,55 @@ function updateCompanyStats() {
       const startDate = new Date(data.companyStartDate);
       const today = new Date();
       
-      // Calculate days
-      const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      // Calculate the time difference in milliseconds
+      const difference = today - startDate;
+      
+      // Calculate time units
+      const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
       
       // Calculate months (approximate)
-      const months = Math.floor(days / 30.44); // Average days per month
+      const months = Math.floor(totalDays / 30.44); // Average days per month
+      const daysInCurrentMonth = Math.floor(totalDays % 30.44); // Days in current month
 
-      document.getElementById("company-days").textContent = days;
-      document.getElementById("company-months").textContent = months;
+      // Update the company stats with a more elegant structure
+      const companyStatsElement = document.querySelector('.company-stats');
+      if (companyStatsElement) {
+        companyStatsElement.innerHTML = `
+          <div class="company-stats-container">
+            <span class="prefix">Company started</span>
+            <div class="time-breakdown">
+              <div class="stat-group">
+                <span class="value">${months}</span>
+                <span class="label">m</span>
+              </div>
+              <div class="stat-group">
+                <span class="value">${daysInCurrentMonth}</span>
+                <span class="label">d</span>
+              </div>
+              <div class="stat-group">
+                <span class="value">${hours}</span>
+                <span class="label">h</span>
+              </div>
+              <div class="stat-group">
+                <span class="value">${minutes}</span>
+                <span class="label">m</span>
+              </div>
+              <div class="stat-group">
+                <span class="value">${seconds}</span>
+                <span class="label">s</span>
+              </div>
+            </div>
+            <div class="total-days-container">
+              <span class="total-days-label">Total:</span>
+              <span class="total-days-value">${totalDays}</span>
+              <span class="total-days-unit">days</span>
+            </div>
+          </div>
+        `;
+      }
     }
   });
 }
@@ -54,6 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(updateCountdown, 1000);
 });
 
-// Call this function when page loads and set interval to update
+// Call this function when page loads and set interval to update more frequently
 updateCompanyStats();
-setInterval(updateCompanyStats, 1000 * 60 * 60); // Update every hour 
+setInterval(updateCompanyStats, 1000); // Update every second to show running time 

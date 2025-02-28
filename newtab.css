@@ -35,27 +35,53 @@ body {
 }
 
 .time-value {
-  font-size: 64px;
+  font-size: 60px;
   font-weight: 500;
   color: white;
   margin: 0 5px;
 }
 
-/* Single accent color for hours (the most important unit in this context) */
+/* Size hierarchy for different time units */
+/* Days - largest */
+.time-value:nth-child(1) {
+  font-size: 72px;
+}
+
+/* Hours - medium-large */
 .time-value:nth-child(3) {
+  font-size: 68px;
   color: #3498db; /* Subtle blue */
 }
 
+/* Minutes - medium */
+.time-value:nth-child(5) {
+  font-size: 64px;
+}
+
+/* Seconds - smallest */
+.time-value:nth-child(7) {
+  font-size: 60px;
+}
+
 .time-label {
-  font-size: 32px;
+  font-size: 30px;
   color: rgba(255, 255, 255, 0.5);
   margin-right: 20px;
   font-weight: 300;
 }
 
-/* Match the accent color for the hours label */
+/* Match label sizes to their values */
+.time-label:nth-child(2) {
+  font-size: 34px;
+}
+
 .time-label:nth-child(4) {
+  font-size: 32px;
   color: rgba(52, 152, 219, 0.7); /* Matching blue */
+}
+
+.time-label:nth-child(6) {
+  font-size: 31px;
 }
 
 #label {
@@ -108,19 +134,118 @@ body {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: 20px;
+  font-size: 27px;
   color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.company-stats-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 15px 25px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.company-stats .prefix {
+  margin-bottom: 10px;
+  opacity: 0.8;
+  font-weight: 400;
+  font-size: 27px;
+}
+
+.company-stats .time-breakdown {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.company-stats .stat-group {
+  display: inline-flex;
+  align-items: baseline;
+  margin: 0 8px;
+  position: relative;
 }
 
 .company-stats .value {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 500;
-  color: #3498db; /* Matching accent color */
+  color: white;
+  margin: 0 3px;
+}
+
+/* Size hierarchy for different time units */
+/* Months - largest */
+.company-stats .stat-group:nth-child(2) .value {
+  font-size: 42px;
+  color: #3498db;
+}
+
+/* Days - medium */
+.company-stats .stat-group:nth-child(3) .value {
+  font-size: 36px;
+}
+
+/* Hours, minutes, seconds - smallest */
+.company-stats .stat-group:nth-child(4) .value,
+.company-stats .stat-group:nth-child(5) .value,
+.company-stats .stat-group:nth-child(6) .value {
+  font-size: 30px;
 }
 
 .company-stats .label {
-  font-size: 16px;
-  opacity: 0.7;
+  font-size: 21px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+}
+
+/* Match label sizes to their values */
+.company-stats .stat-group:nth-child(2) .label {
+  font-size: 24px;
+  color: rgba(52, 152, 219, 0.7);
+}
+
+.company-stats .stat-group:nth-child(3) .label {
+  font-size: 22.5px;
+}
+
+/* Total days container styling */
+.total-days-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  background-color: rgba(231, 76, 60, 0.15);
+  padding: 8px 15px;
+  border-radius: 6px;
+  margin-top: 5px;
+  border-top: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.total-days-label {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 8px;
+  font-weight: 400;
+}
+
+.total-days-value {
+  font-size: 32px;
+  font-weight: 600;
+  color: #e74c3c;
+  margin: 0 5px;
+}
+
+.total-days-unit {
+  font-size: 22px;
+  color: rgba(231, 76, 60, 0.8);
+  font-weight: 400;
 }
 
 /* Hide the time-text since we now have a cleaner display */
