@@ -10,7 +10,7 @@ function updateCountdown() {
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-      // Format the countdown in a cleaner way
+      // Format the countdown in a cleaner way with proper structure for CSS targeting
       document.getElementById("days").innerHTML = `
         <span class="time-value">${days}</span><span class="time-label">d</span>
         <span class="time-value">${hours}</span><span class="time-label">h</span>
