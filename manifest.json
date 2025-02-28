@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Motivation Countdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A customizable countdown timer for your new tab page to help you stay motivated and track goals",
   "author": "Your Name",
   "permissions": ["storage"],
