@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const addMessageButton = document.getElementById("addMessage");
 
   // Load saved settings
-  chrome.storage.sync.get(["targetDate", "messages", "companyStartDate"], function (data) {
+  chrome.storage.sync.get(["targetDate", "messages", "startDate"], function (data) {
     if (data.targetDate) {
       document.getElementById("targetDate").value = data.targetDate;
     }
-    if (data.companyStartDate) {
-      document.getElementById("companyStartDate").value = data.companyStartDate;
+    if (data.startDate) {
+      document.getElementById("startDate").value = data.startDate;
     }
     if (data.messages && data.messages.length > 0) {
       // Clear default message input
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Save settings
   document.getElementById("saveButton").addEventListener("click", function () {
     const targetDate = document.getElementById("targetDate").value;
-    const companyStartDate = document.getElementById("companyStartDate").value;
+    const startDate = document.getElementById("startDate").value;
     const messageInputs = document.querySelectorAll('.message-input');
     const messages = Array.from(messageInputs).map(input => input.value).filter(msg => msg.trim() !== '');
 
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         targetDate: targetDate,
         messages: messages,
-        companyStartDate: companyStartDate,
+        startDate: startDate,
       },
       function () {
         const button = document.getElementById("saveButton");

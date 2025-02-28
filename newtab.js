@@ -31,9 +31,9 @@ function updateCountdown() {
 }
 
 function updateCompanyStats() {
-  chrome.storage.sync.get(["companyStartDate"], function (data) {
-    if (data.companyStartDate) {
-      const startDate = new Date(data.companyStartDate);
+  chrome.storage.sync.get(["startDate"], function (data) {
+    if (data.startDate) {
+      const startDate = new Date(data.startDate);
       const today = new Date();
       
       // Calculate the time difference in milliseconds
@@ -54,7 +54,7 @@ function updateCompanyStats() {
       if (companyStatsElement) {
         companyStatsElement.innerHTML = `
           <div class="company-stats-container">
-            <span class="prefix">Company started</span>
+            <span class="prefix">Started</span>
             <div class="time-breakdown">
               <div class="stat-group">
                 <span class="value">${months}</span>
