@@ -1,6 +1,6 @@
 # Privacy Policy for Motivation Countdown
 
-## Last Updated: [Current Date]
+## Last Updated: 2025-02-28
 
 ### Introduction
 
