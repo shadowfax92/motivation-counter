@@ -2,25 +2,46 @@ function updateCountdown() {
   chrome.storage.sync.get(["targetDate", "messages"], function (data) {
     if (data.targetDate) {
       const targetDate = new Date(data.targetDate);
+      // Set the target date to end of day (23:59:59.999)
+      targetDate.setHours(23, 59, 59, 999);
       const currentDate = new Date();
       const difference = targetDate - currentDate;
 
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      // Handle case where target date has completely passed
+      if (difference < 0) {
+        document.getElementById("days").innerHTML = `
+          <span class="time-value">0</span><span class="time-label">d</span>
+          <span class="time-value">0</span><span class="time-label">h</span>
+          <span class="time-value">0</span><span class="time-label">m</span>
+          <span class="time-value">0</span><span class="time-label">s</span>
+        `;
+        document.getElementById("time-text").textContent = "0 days 0 hours 0 minutes 0 seconds";
+      } else {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-      // Format the countdown in a cleaner way with proper structure for CSS targeting
-      document.getElementById("days").innerHTML = `
-        <span class="time-value">${days}</span><span class="time-label">d</span>
-        <span class="time-value">${hours}</span><span class="time-label">h</span>
-        <span class="time-value">${minutes}</span><span class="time-label">m</span>
-        <span class="time-value">${seconds}</span><span class="time-label">s</span>
-      `;
-      
-      // Keep the detailed text in the time-text element
-      document.getElementById("time-text").textContent = 
-        `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+        // If it's the target date, only show hours, minutes, and seconds
+        if (days === 0) {
+          document.getElementById("days").innerHTML = `
+            <span class="time-value">${hours}</span><span class="time-label">h</span>
+            <span class="time-value">${minutes}</span><span class="time-label">m</span>
+            <span class="time-value">${seconds}</span><span class="time-label">s</span>
+          `;
+          document.getElementById("time-text").textContent = 
+            `${hours} hours ${minutes} minutes ${seconds} seconds`;
+        } else {
+          document.getElementById("days").innerHTML = `
+            <span class="time-value">${days}</span><span class="time-label">d</span>
+            <span class="time-value">${hours}</span><span class="time-label">h</span>
+            <span class="time-value">${minutes}</span><span class="time-label">m</span>
+            <span class="time-value">${seconds}</span><span class="time-label">s</span>
+          `;
+          document.getElementById("time-text").textContent = 
+            `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+        }
+      }
       
       // Display all messages
       const messages = data.messages || ["Set your date and messages in popup"];
